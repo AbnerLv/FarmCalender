@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.pyp.farmcalender.ui.board.MessageBoardFragment;
-import com.pyp.farmcalender.ui.other.OtherFragment;
+import com.pyp.farmcalender.ui.record.RecordFragment;
 import com.pyp.farmcalender.ui.setting.SettingFragment;
 
 
@@ -21,7 +21,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private static final String TAG = "MainActivity";
 
     private MessageBoardFragment messageBoardFragment;
-    private OtherFragment otherFragment;
+    private RecordFragment otherFragment;
     private SettingFragment settingFragment;
 
     private View taskLayout;
@@ -115,7 +115,7 @@ public class MainActivity extends Activity implements OnClickListener {
             newsImage.setImageResource(R.mipmap.news_selected);
             newsText.setTextColor(Color.BLUE);
             if (otherFragment == null) {
-                otherFragment = new OtherFragment();
+                otherFragment = new RecordFragment();
                 transaction.add(R.id.content, otherFragment);
             } else {
                 otherFragment.onResume();
