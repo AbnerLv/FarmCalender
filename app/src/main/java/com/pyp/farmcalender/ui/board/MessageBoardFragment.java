@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.pyp.farmcalender.R;
 
@@ -13,10 +14,11 @@ import com.pyp.farmcalender.R;
 public class MessageBoardFragment extends Fragment implements OnClickListener {
 
 
+    private ListView boardListView;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View contactsLayout = inflater.inflate(R.layout.message_board_layout,
+        View contactsLayout = inflater.inflate(R.layout.message_board_list,
                 container, false);
         return contactsLayout;
     }
@@ -29,7 +31,7 @@ public class MessageBoardFragment extends Fragment implements OnClickListener {
 
     // 初始化控件
     private void init() {
-
+        boardListView = (ListView)getActivity().findViewById(R.id.lv_message_board);
     }
 
 

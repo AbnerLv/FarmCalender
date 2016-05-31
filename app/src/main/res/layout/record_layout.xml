@@ -23,7 +23,7 @@
             android:textSize="26sp"
             android:textStyle="bold" />
 
-        <com.pyp.farmcalender.ui.view.border.BorderText
+        <com.pyp.farmcalender.ui.view.BorderText
             android:id="@+id/toptext"
             android:layout_width="match_parent"
             android:layout_height="45dp"
@@ -40,7 +40,7 @@
             android:layout_height="match_parent" />
     </LinearLayout>
 
-    <com.pyp.farmcalender.ui.view.border.BorderTextView
+    <com.pyp.farmcalender.ui.view.BorderTextView
         android:id="@+id/tv_all_event"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

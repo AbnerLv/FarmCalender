@@ -7,7 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import com.pyp.farmcalender.R;
-import com.pyp.farmcalender.ui.view.border.BorderTextView;
+import com.pyp.farmcalender.ui.view.BorderTextView;
 import com.pyp.farmcalender.utils.calendar.LunarCalendar;
 import com.pyp.farmcalender.constant.CalendarConstant;
 import com.pyp.farmcalender.dao.ScheduleDAO;

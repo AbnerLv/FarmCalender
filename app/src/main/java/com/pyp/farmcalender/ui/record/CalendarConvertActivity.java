@@ -1,7 +1,7 @@
 package com.pyp.farmcalender.ui.record;
 
 import com.pyp.farmcalender.R;
-import com.pyp.farmcalender.ui.view.border.BorderTextView;
+import com.pyp.farmcalender.ui.view.BorderTextView;
 import com.pyp.farmcalender.utils.calendar.LunarCalendar;
 
 import android.app.Activity;

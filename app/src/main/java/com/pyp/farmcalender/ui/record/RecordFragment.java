@@ -31,7 +31,7 @@ import android.widget.ViewFlipper;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.ui.adapter.CalendarAdapter;
-import com.pyp.farmcalender.ui.view.border.BorderText;
+import com.pyp.farmcalender.ui.view.BorderText;
 import com.pyp.farmcalender.dao.ScheduleDAO;
 
 import java.text.SimpleDateFormat;

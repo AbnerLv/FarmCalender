@@ -24,7 +24,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private RecordFragment otherFragment;
     private SettingFragment settingFragment;
 
-    private View taskLayout;
+    private View boardLayout;
     private View newsLayout;
     private View settingLayout;
 
@@ -51,7 +51,7 @@ public class MainActivity extends Activity implements OnClickListener {
      * 在这里获取到每个需要用到的控件的实例，并给它们设置好必要的点击事件。
      */
     private void initViews() {
-        taskLayout = findViewById(R.id.message_board_layout);
+        boardLayout = findViewById(R.id.message_board_layout);
         newsLayout = findViewById(R.id.other_layout);
         settingLayout = findViewById(R.id.setting_layout);
 
@@ -63,7 +63,7 @@ public class MainActivity extends Activity implements OnClickListener {
         newsText = (TextView) findViewById(R.id.other_text);
         settingText = (TextView) findViewById(R.id.setting_text);
 
-        taskLayout.setOnClickListener(this);
+        boardLayout.setOnClickListener(this);
         newsLayout.setOnClickListener(this);
         settingLayout.setOnClickListener(this);
     }
