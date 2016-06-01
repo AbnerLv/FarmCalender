@@ -10,26 +10,33 @@ import com.pyp.farmcalender.entity.MessageBoardEntity;
 import com.pyp.farmcalender.ui.board.BoardDetailActivity;
 
 
-/**
- * Created by lzb on 2016/5/24.
- */
+
 public class BoardItemView {
 
-    public static View getInstance(final Context context, View noticeView,final MessageBoardEntity mBoardEntity) {
-        if (noticeView == null) {
-            noticeView = View.inflate(context, R.layout.message_board_list_item, null);
+    public static View getInstance(final Context context, View boardView,final MessageBoardEntity mBoardEntity) {
+        if (boardView == null) {
+            boardView = View.inflate(context, R.layout.message_board_list_item, null);
         }
 
+        TextView userTextView = (TextView)boardView.findViewById(R.id.tv_message_board_username);
+        TextView timeTextView = (TextView)boardView.findViewById(R.id.tv_message_board_time);
+        TextView contentTextView = (TextView)boardView.findViewById(R.id.tv_message_board_content);
+        TextView numTextView = (TextView)boardView.findViewById(R.id.tv_message_board_num);
+        userTextView.setText(mBoardEntity.getUsername());
+        timeTextView.setText(mBoardEntity.getTime());
+        contentTextView.setText(mBoardEntity.getContent());
+        numTextView.setText("回答(" + mBoardEntity.getCommentNum() + ")");
 
-        noticeView.setOnClickListener(new View.OnClickListener() {
+        numTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BoardDetailActivity.class);
-
+                intent.putExtra("message_id",mBoardEntity.getId());
+                intent.putExtra("content",mBoardEntity.getContent());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }
         });
-        return noticeView;
+        return boardView;
     }
 }

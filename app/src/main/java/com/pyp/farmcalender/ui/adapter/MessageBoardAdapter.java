@@ -12,13 +12,10 @@ import com.pyp.farmcalender.ui.view.BoardItemView;
 
 import java.util.List;
 
-/**
- * Created by lzb on 2016/5/24.
- */
 
 
 public class MessageBoardAdapter extends BaseAdapter {
-    private static final String TAG = "NoticeAdapter";
+    private static final String TAG = "MessageBoardAdapter";
     private List<MessageBoardEntity> messageBoardEntities;
 
     private Context mContext;
@@ -27,14 +24,14 @@ public class MessageBoardAdapter extends BaseAdapter {
         this.mContext = mContext;
     }
 
-    public void setMessageBoardEntities(List<MessageBoardEntity> messageBoardEntities){
+    public void setMessageBoardEntities(List<MessageBoardEntity> messageBoardEntities) {
         this.messageBoardEntities = messageBoardEntities;
         this.notifyDataSetChanged();
     }
 
     @Override
     public int getCount() {
-        Log.e(TAG,"NoticeAdapter "+messageBoardEntities.size()+"");
+        Log.e(TAG, "MessageBoardAdapter " + messageBoardEntities.size() + "");
         return messageBoardEntities.size();
     }
 
@@ -51,7 +48,7 @@ public class MessageBoardAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView,
-            ViewGroup parent) {
-       return BoardItemView.getInstance(mContext, convertView, messageBoardEntities.get(position));
+                        ViewGroup parent) {
+        return BoardItemView.getInstance(mContext, convertView, messageBoardEntities.get(position));
     }
 }

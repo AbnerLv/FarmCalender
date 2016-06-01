@@ -3,13 +3,13 @@ package com.pyp.farmcalender.entity;
 /**
  * Created by Administrator on 2016/5/31.
  */
-public class MessageBoardEntity {
+public class CommentEntity {
+
     private String id;
-    private String userid;
-    private String username;
+    private String messageId;
+    private String userId;
     private String content;
     private String time;
-    private String commentNum;
 
     public String getId() {
         return id;
@@ -19,12 +19,20 @@ public class MessageBoardEntity {
         this.id = id;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getMessageId() {
+        return messageId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setMessageId(String messageId) {
+        this.messageId = messageId;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getContent() {
@@ -41,21 +49,5 @@ public class MessageBoardEntity {
 
     public void setTime(String time) {
         this.time = time;
-    }
-
-    public String getCommentNum() {
-        return commentNum;
-    }
-
-    public void setCommentNum(String commentNum) {
-        this.commentNum = commentNum;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 }

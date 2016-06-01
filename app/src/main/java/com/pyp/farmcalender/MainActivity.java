@@ -21,7 +21,7 @@ public class MainActivity extends Activity implements OnClickListener {
     private static final String TAG = "MainActivity";
 
     private MessageBoardFragment messageBoardFragment;
-    private RecordFragment otherFragment;
+    private RecordFragment recordFragment;
     private SettingFragment settingFragment;
 
     private View boardLayout;
@@ -114,12 +114,12 @@ public class MainActivity extends Activity implements OnClickListener {
         case 1:
             newsImage.setImageResource(R.mipmap.news_selected);
             newsText.setTextColor(Color.BLUE);
-            if (otherFragment == null) {
-                otherFragment = new RecordFragment();
-                transaction.add(R.id.content, otherFragment);
+            if (recordFragment == null) {
+                recordFragment = new RecordFragment();
+                transaction.add(R.id.content, recordFragment);
             } else {
-                otherFragment.onResume();
-                transaction.show(otherFragment);
+                recordFragment.onResume();
+                transaction.show(recordFragment);
             }
             break;
 
@@ -160,8 +160,8 @@ public class MainActivity extends Activity implements OnClickListener {
      *            用于对Fragment执行操作的事务
      */
     private void hideFragments(FragmentTransaction transaction) {
-        if (otherFragment != null) {
-            transaction.hide(otherFragment);
+        if (recordFragment != null) {
+            transaction.hide(recordFragment);
         }
         if (messageBoardFragment != null) {
             transaction.hide(messageBoardFragment);
