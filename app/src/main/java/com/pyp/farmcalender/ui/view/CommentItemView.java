@@ -1,14 +1,11 @@
 package com.pyp.farmcalender.ui.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.TextView;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.entity.CommentEntity;
-import com.pyp.farmcalender.entity.MessageBoardEntity;
-import com.pyp.farmcalender.ui.board.BoardDetailActivity;
 
 
 public class CommentItemView {

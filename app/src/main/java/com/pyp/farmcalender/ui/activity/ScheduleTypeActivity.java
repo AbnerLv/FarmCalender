@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.record;
+package com.pyp.farmcalender.ui.activity;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.ui.view.BorderTextView;
@@ -134,7 +134,7 @@ public class ScheduleTypeActivity extends Activity {
 				sch_typeID = schType_temp;
 				remindID = remind_temp;
 				Intent intent = new Intent();
-				intent.setClass(ScheduleTypeActivity.this, ScheduleView.class);
+				intent.setClass(ScheduleTypeActivity.this, AddScheduleAtivity.class);
 				intent.putExtra("schType_remind", new int[]{sch_typeID,remindID});
 				startActivity(intent);
 			}
@@ -147,7 +147,7 @@ public class ScheduleTypeActivity extends Activity {
 			public void onClick(View v) {
 
 				Intent intent = new Intent();
-				intent.setClass(ScheduleTypeActivity.this, ScheduleView.class);
+				intent.setClass(ScheduleTypeActivity.this, AddScheduleAtivity.class);
 				intent.putExtra("schType_remind", new int[]{sch_typeID,remindID});
 				startActivity(intent);
 			}

@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.board;
+package com.pyp.farmcalender.ui.activity;
 
 
 import android.app.Activity;
@@ -54,7 +54,8 @@ public class BoardDetailActivity extends Activity {
         btnAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(BoardDetailActivity.this,AnswerQuestionActivity.class);
+                startActivity(intent);
             }
         });
 

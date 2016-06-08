@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.board;
+package com.pyp.farmcalender.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
@@ -52,7 +52,7 @@ public class MessageBoardFragment extends Fragment implements OnClickListener {
         MessageBoardService.getInstance().getMessageInfos(getActivity(), new GetMessageInfosHandler() {
             @Override
             public void onSuccess(String messageEntitys) {
-                Log.d(TAG,messageEntitys+"");
+                Log.d(TAG, messageEntitys + "");
                 Gson mGson = new Gson();
                 List<MessageBoardEntity> messages = mGson.fromJson(messageEntitys, new TypeToken<List<MessageBoardEntity>>() {
                 }.getType());
@@ -66,5 +66,11 @@ public class MessageBoardFragment extends Fragment implements OnClickListener {
     @Override
     public void onClick(View v) {
 
+    }
+
+    @Override
+    public void onStop() {
+        MessageBoardService.getInstance().cancelPendingRequests();
+        super.onStop();
     }
 }

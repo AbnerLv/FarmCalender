@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.record;
+package com.pyp.farmcalender.ui.activity;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -32,7 +32,7 @@ import android.widget.TimePicker;
  * @author jack_peng
  *
  */
-public class ScheduleView extends Activity {
+public class AddScheduleAtivity extends Activity {
 
 	private LunarCalendar lc = null;
 	private ScheduleDAO dao = null;
@@ -61,7 +61,7 @@ public class ScheduleView extends Activity {
 	private static String schText = "";
 	int schTypeID = 0;
 
-	public ScheduleView() {
+	public AddScheduleAtivity() {
 		lc = new LunarCalendar();
 		dao = new ScheduleDAO(this);
 	}
@@ -100,7 +100,7 @@ public class ScheduleView extends Activity {
 			public void onClick(View v) {
 				schText = scheduleText.getText().toString();
 				Intent intent = new Intent();
-				intent.setClass(ScheduleView.this, ScheduleTypeActivity.class);
+				intent.setClass(AddScheduleAtivity.this, ScheduleTypeActivity.class);
 				intent.putExtra("sch_remind", new int[]{sch_typeID,remindID});
 				startActivity(intent);
 			}
@@ -112,7 +112,7 @@ public class ScheduleView extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				new TimePickerDialog(ScheduleView.this, new OnTimeSetListener() {
+				new TimePickerDialog(AddScheduleAtivity.this, new OnTimeSetListener() {
 
 					@Override
 					public void onTimeSet(TimePicker view, int hourOfDay, int min) {
@@ -132,7 +132,7 @@ public class ScheduleView extends Activity {
 			public void onClick(View v) {
 				if(TextUtils.isEmpty(scheduleText.getText().toString())){
 					//判断输入框是否为空
-					new AlertDialog.Builder(ScheduleView.this).setTitle("输入日程").setMessage("日程信息不能为空").setPositiveButton("确认", null).show();
+					new AlertDialog.Builder(AddScheduleAtivity.this).setTitle("输入日程").setMessage("日程信息不能为空").setPositiveButton("确认", null).show();
 				}else{
 					//将日程信息保存
 					String showDate = handleInfo(Integer.parseInt(scheduleYear), Integer.parseInt(tempMonth), Integer.parseInt(tempDay), hour, minute, week, remindID);
@@ -145,7 +145,7 @@ public class ScheduleView extends Activity {
 					//将scheduleID保存到数据中(因为在CalendarActivity中点击gridView中的一个Item可能会对应多个标记日程(scheduleID))
 					String [] scheduleIDs = new String[]{String.valueOf(scheduleID)};
 					Intent intent = new Intent();
-					intent.setClass(ScheduleView.this, ScheduleInfoActivity.class);
+					intent.setClass(AddScheduleAtivity.this, ScheduleInfoActivity.class);
 					//intent.putExtra("scheduleID", String.valueOf(scheduleID));
 					intent.putExtra("scheduleID", scheduleIDs);
 					startActivity(intent);

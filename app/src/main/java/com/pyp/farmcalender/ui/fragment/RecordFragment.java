@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.record;
+package com.pyp.farmcalender.ui.fragment;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -31,6 +31,10 @@ import android.widget.ViewFlipper;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.ui.adapter.CalendarAdapter;
+import com.pyp.farmcalender.ui.activity.AddScheduleAtivity;
+import com.pyp.farmcalender.ui.activity.CalendarConvertActivity;
+import com.pyp.farmcalender.ui.activity.ScheduleAllActivity;
+import com.pyp.farmcalender.ui.activity.ScheduleInfoActivity;
 import com.pyp.farmcalender.ui.view.BorderText;
 import com.pyp.farmcalender.dao.ScheduleDAO;
 
@@ -403,7 +407,7 @@ public class RecordFragment extends Fragment implements GestureDetector.OnGestur
 
                         Intent intent = new Intent();
                         intent.putStringArrayListExtra("scheduleDate", scheduleDate);
-                        intent.setClass(getActivity(), ScheduleView.class);
+                        intent.setClass(getActivity(), AddScheduleAtivity.class);
                         startActivity(intent);
                     }
                 }

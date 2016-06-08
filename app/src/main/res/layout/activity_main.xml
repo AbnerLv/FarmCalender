@@ -32,7 +32,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/message_unselected"/>
+                    android:src="@mipmap/forum_unselected"/>
 
                 <TextView
                     android:id="@+id/message_board_text"
@@ -63,7 +63,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/news_unselected"/>
+                    android:src="@mipmap/record_unselected"/>
 
                 <TextView
                     android:id="@+id/other_text"
@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:src="@mipmap/setting_unselected"/>
+                    android:src="@mipmap/person_unselected"/>
 
                 <TextView
                     android:id="@+id/setting_text"

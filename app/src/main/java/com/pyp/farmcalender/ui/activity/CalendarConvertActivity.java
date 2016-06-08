@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.record;
+package com.pyp.farmcalender.ui.activity;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.ui.view.BorderTextView;

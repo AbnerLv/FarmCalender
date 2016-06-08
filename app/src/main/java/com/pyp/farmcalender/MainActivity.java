@@ -11,9 +11,9 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.pyp.farmcalender.ui.board.MessageBoardFragment;
-import com.pyp.farmcalender.ui.record.RecordFragment;
-import com.pyp.farmcalender.ui.setting.SettingFragment;
+import com.pyp.farmcalender.ui.fragment.MessageBoardFragment;
+import com.pyp.farmcalender.ui.fragment.RecordFragment;
+import com.pyp.farmcalender.ui.fragment.SettingFragment;
 
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -98,8 +98,8 @@ public class MainActivity extends Activity implements OnClickListener {
         hideFragments(transaction);
         switch (index) {
         case 0:
-            messageImage.setImageResource(R.mipmap.message_selected);
-            messageText.setTextColor(Color.BLUE);
+            messageImage.setImageResource(R.mipmap.forum_selected);
+            messageText.setTextColor(Color.parseColor("#11cd6e"));
             Log.d(TAG, "taskManaFragment");
             if (messageBoardFragment == null) {
                 messageBoardFragment = new MessageBoardFragment();
@@ -112,8 +112,8 @@ public class MainActivity extends Activity implements OnClickListener {
             break;
 
         case 1:
-            newsImage.setImageResource(R.mipmap.news_selected);
-            newsText.setTextColor(Color.BLUE);
+            newsImage.setImageResource(R.mipmap.record_selected);
+            newsText.setTextColor(Color.parseColor("#11cd6e"));
             if (recordFragment == null) {
                 recordFragment = new RecordFragment();
                 transaction.add(R.id.content, recordFragment);
@@ -124,9 +124,8 @@ public class MainActivity extends Activity implements OnClickListener {
             break;
 
         case 2:
-        default:
-            settingImage.setImageResource(R.mipmap.setting_selected);
-            settingText.setTextColor(Color.BLUE);
+            settingImage.setImageResource(R.mipmap.person_selected);
+            settingText.setTextColor(Color.parseColor("#11cd6e"));
             if (settingFragment == null) {
                 settingFragment = new SettingFragment();
                 transaction.add(R.id.content, settingFragment);
@@ -135,6 +134,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 transaction.show(settingFragment);
             }
             break;
+            default:break;
         }
         transaction.commit();
     }
@@ -143,14 +143,14 @@ public class MainActivity extends Activity implements OnClickListener {
      * 清除掉所有的选中状态。
      */
     private void clearSelection() {
-        messageImage.setImageResource(R.mipmap.message_unselected);
-        messageText.setTextColor(Color.parseColor("#82858b"));
+        messageImage.setImageResource(R.mipmap.forum_unselected);
+        messageText.setTextColor(Color.parseColor("#33475f"));
 
-        newsImage.setImageResource(R.mipmap.news_unselected);
-        newsText.setTextColor(Color.parseColor("#82858b"));
+        newsImage.setImageResource(R.mipmap.record_unselected);
+        newsText.setTextColor(Color.parseColor("#33475f"));
 
-        settingImage.setImageResource(R.mipmap.setting_unselected);
-        settingText.setTextColor(Color.parseColor("#82858b"));
+        settingImage.setImageResource(R.mipmap.person_unselected);
+        settingText.setTextColor(Color.parseColor("#33475f"));
     }
 
     /**

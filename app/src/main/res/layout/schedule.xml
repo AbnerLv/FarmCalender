@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--添加记录-->
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
@@ -6,7 +7,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
 
-    <com.pwp.borderText.BorderTextView
+    <com.pyp.farmcalender.ui.view.BorderTextView
         android:id="@+id/scheduleTop"
         android:gravity="center"
         android:layout_width="fill_parent"
@@ -18,7 +19,7 @@
         android:text="编辑日程"
         />
 
-    <com.pwp.borderText.BorderTextView
+    <com.pyp.farmcalender.ui.view.BorderTextView
         android:id="@+id/scheduleType"
         android:gravity="center_vertical"
         android:layout_width="fill_parent"
@@ -31,7 +32,7 @@
         android:textColor="#000000"
         android:clickable="true"
         />
-    <com.pwp.borderText.BorderTextView
+    <com.pyp.farmcalender.ui.view.BorderTextView
         android:id="@+id/scheduleDate"
         android:gravity="center_vertical"
         android:layout_width="fill_parent"
@@ -43,7 +44,7 @@
         android:textColor="#000000"
         android:clickable="true"
         />
-    <com.pwp.borderText.BorderEditText
+    <com.pyp.farmcalender.ui.view.BorderEditText
         android:id="@+id/scheduleText"
         android:gravity="top"
         android:layout_width="fill_parent"
@@ -55,7 +56,7 @@
         android:textColor="#000000"
         android:hint="请输入你的日程..."
         />
-    <com.pwp.borderText.BorderTextView
+    <com.pyp.farmcalender.ui.view.BorderTextView
         android:id="@+id/save"
         android:gravity="center"
         android:layout_width="fill_parent"

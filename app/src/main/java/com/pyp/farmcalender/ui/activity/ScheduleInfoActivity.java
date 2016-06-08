@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.record;
+package com.pyp.farmcalender.ui.activity;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.ui.view.BorderEditText;
@@ -22,19 +22,22 @@ import android.view.View.OnLongClickListener;
 import android.widget.LinearLayout;
 import android.widget.AbsListView.LayoutParams;
 
+/**
+ * 详细记录
+ */
 public class ScheduleInfoActivity extends Activity {
 
 	private LinearLayout layout = null;
 	private BorderTextView textTop = null;
-	private BorderTextView info = null;
-	private BorderTextView date = null;
-	private BorderTextView type = null;
+	//private BorderTextView info = null;
+	//private BorderTextView date = null;
+	//private BorderTextView type = null;
 	private BorderEditText editInfo = null;
 	private ScheduleDAO dao = null;
 	private ScheduleEntity scheduleVO = null;
 
-	private String scheduleInfo = "";    //日程信息被修改前的内容
-	private String scheduleChangeInfo = "";  //日程信息被修改之后的内容
+	//private String scheduleInfo = "";    //日程信息被修改前的内容
+	//private String scheduleChangeInfo = "";  //日程信息被修改之后的内容
 	private final LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
 
 	@Override

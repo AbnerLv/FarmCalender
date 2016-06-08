@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui.record;
+package com.pyp.farmcalender.ui.activity;
 
 import java.util.ArrayList;;
 
@@ -9,6 +9,8 @@ import com.pyp.farmcalender.dao.ScheduleDAO;
 import com.pyp.farmcalender.entity.ScheduleEntity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -119,6 +121,30 @@ public class ScheduleAllActivity extends Activity {
 			}
 		});
 
+		//长时间按住日程类型textview就提示是否删除日程信息
+		info.setOnLongClickListener(new View.OnLongClickListener() {
+
+			@Override
+			public boolean onLongClick(View v) {
+
+				final String scheduleID = String.valueOf(v.getTag());
+
+				new AlertDialog.Builder(ScheduleAllActivity.this).setTitle("删除日程").setMessage("确认删除").setPositiveButton("确认", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+
+						dao.delete(Integer.parseInt(scheduleID));
+						Intent intent1 = new Intent();
+						intent1.setClass(ScheduleAllActivity.this, ScheduleAllActivity.class);
+						startActivity(intent1);
+					}
+				}).setNegativeButton("取消", null).show();
+
+				return true;
+			}
+		});
+
 
 	}
 
@@ -140,7 +166,7 @@ public class ScheduleAllActivity extends Activity {
 				break;
 			case Menu.FIRST+1:
 				Intent intent1 = new Intent();
-				intent1.setClass(ScheduleAllActivity.this, ScheduleView.class);
+				intent1.setClass(ScheduleAllActivity.this, AddScheduleAtivity.class);
 				startActivity(intent1);
 				break;
 		}

@@ -11,7 +11,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.pyp.farmcalender.constant.Constant;
+import com.pyp.farmcalender.entity.UserEntity;
 import com.pyp.farmcalender.service.handler.LoginHandler;
 import com.pyp.farmcalender.service.handler.RegisterHandler;
 import com.pyp.farmcalender.service.response.ErrorResponse;
@@ -25,6 +28,7 @@ import org.json.JSONObject;
 public class UserService {
 
     private static UserService instance;
+    private final static String TAG = "UserService---";
 
     public static UserService  getInstance(){
         if(instance == null){
@@ -49,20 +53,16 @@ public class UserService {
                 Request.Method.POST, LOGIN_URL, json,
                 new Response.Listener<JSONObject>() {
                     @Override
-                    public void onResponse(JSONObject response) {
-                        Log.d("TAG", response.toString());
-                        String password = null;
-                        try {
-                            password = response.getString("e  RequestQueue mQueue = Volley.newRequestQueue(context);mp_password").toString();
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                        if (password == null || "0".equals(password)) {
-
+                    public void onResponse(JSONObject userEntity) {
+                        Log.d(TAG, userEntity.toString());
+                        Gson gson = new Gson();
+                        UserEntity entity =  gson.fromJson(userEntity.toString(), new TypeToken<UserEntity>() {
+                        }.getType());
+                        if (entity == null) {
                             Toast.makeText(context, "输入的用户名或密码有错",
                                     Toast.LENGTH_LONG).show();
                         } else {
-                            loginHandler.onSuccess(1);
+                            loginHandler.onSuccess(entity);
                         }
                     }
                 }, new ErrorResponse(context));
@@ -81,9 +81,7 @@ public class UserService {
                 try {
                     int success = Integer.parseInt(response
                             .getString("success"));
-                    if (success == 1) {
                         handler.register(success);
-                    }
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 } catch (JSONException e) {
@@ -93,7 +91,7 @@ public class UserService {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("TAG", error.getMessage(), error);
+                Log.e(TAG, error.getMessage(), error);
             }
         });
         mQueue.add(jsonObjectRequest);

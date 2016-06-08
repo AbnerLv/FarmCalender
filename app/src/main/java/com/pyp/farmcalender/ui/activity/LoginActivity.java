@@ -1,16 +1,18 @@
-package com.pyp.farmcalender.ui;
+package com.pyp.farmcalender.ui.activity;
 
 
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.pyp.farmcalender.MainActivity;
 import com.pyp.farmcalender.R;
+import com.pyp.farmcalender.entity.UserEntity;
 import com.pyp.farmcalender.service.UserService;
 import com.pyp.farmcalender.service.handler.LoginHandler;
 
@@ -23,6 +25,7 @@ import java.util.TimerTask;
 public class LoginActivity extends Activity {
 
 
+    private final static String TAG = "LoginActivity";
     private EditText etUsername;
     private EditText etPassword;
     private Button btnSignOut;
@@ -42,24 +45,27 @@ public class LoginActivity extends Activity {
         btnSignIn = (Button)findViewById(R.id.btn_sign_in);
         btnSignOut = (Button)findViewById(R.id.btn_sign_out);
 
-        String username = etUsername.getText().toString();
-        String password = etPassword.getText().toString();
-        final JSONObject json = new JSONObject();
-        try {
-            json.put("username", username);
-            json.put("password", password);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+
+
+
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+                Log.i(TAG,"username = " + username);
+                final JSONObject json = new JSONObject();
+                try {
+                    json.put("username", username);
+                    json.put("password", password);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                Log.i(TAG,json.toString());
                 UserService.getInstance().checkLogin(json, getApplicationContext(), new LoginHandler() {
                     @Override
-                    public void onSuccess(int success) {
-                        if(success == 1){
+                    public void onSuccess(UserEntity userEntity) {
                             progressDialog();
-                        }
                     }
                 });
             }
@@ -79,7 +85,7 @@ public class LoginActivity extends Activity {
      * 登陆进程框
      */
     private void progressDialog() {
-        final ProgressDialog proDialog = new ProgressDialog(getApplicationContext());
+        final ProgressDialog proDialog = new ProgressDialog(LoginActivity.this);
         proDialog.setTitle("验证中");
         proDialog.setMessage("正在登陆，请稍后…");
         proDialog.setIndeterminate(true);

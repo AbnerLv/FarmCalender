@@ -1,4 +1,4 @@
-package com.pyp.farmcalender.ui;
+package com.pyp.farmcalender.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;

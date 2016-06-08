@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.entity.MessageBoardEntity;
-import com.pyp.farmcalender.ui.board.BoardDetailActivity;
+import com.pyp.farmcalender.ui.activity.BoardDetailActivity;
 
 
 
