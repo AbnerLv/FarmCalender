@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.pyp.farmcalender.MainActivity;
 import com.pyp.farmcalender.R;
@@ -28,13 +29,13 @@ public class LoginActivity extends Activity {
     private final static String TAG = "LoginActivity";
     private EditText etUsername;
     private EditText etPassword;
-    private Button btnSignOut;
+    private TextView tvRegister;
     private Button btnSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.login_layout);
         init();
 
     }
@@ -43,7 +44,7 @@ public class LoginActivity extends Activity {
         etUsername = (EditText)findViewById(R.id.et_login_username);
         etPassword = (EditText)findViewById(R.id.et_login_password);
         btnSignIn = (Button)findViewById(R.id.btn_sign_in);
-        btnSignOut = (Button)findViewById(R.id.btn_sign_out);
+        tvRegister = (TextView)findViewById(R.id.tv_register);
 
 
 
@@ -71,10 +72,10 @@ public class LoginActivity extends Activity {
             }
         });
 
-        btnSignOut.setOnClickListener(new View.OnClickListener() {
+        tvRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(LoginActivity.this, StartActivity.class);
+                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });

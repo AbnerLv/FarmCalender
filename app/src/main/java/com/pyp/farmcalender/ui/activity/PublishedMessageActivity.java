@@ -24,7 +24,7 @@ public class PublishedMessageActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.published_message_list);
+        setContentView(R.layout.message_published_list);
         init();
 
     }

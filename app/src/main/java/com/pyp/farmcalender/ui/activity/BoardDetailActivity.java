@@ -5,8 +5,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -28,11 +31,13 @@ public class BoardDetailActivity extends Activity {
 
     private ListView mAnswerListView;
     private TextView mContentTextView;
-    private Button btnAnswer;
+    private ImageView ivReply;
+    private EditText etReply;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.message_detail_layout);
         init();
 
@@ -41,21 +46,25 @@ public class BoardDetailActivity extends Activity {
     private void init(){
         mAnswerListView = (ListView)findViewById(R.id.lv_message_detail_all_answer);
         mContentTextView = (TextView)findViewById(R.id.tv_message_detail_content);
-        btnAnswer = (Button)findViewById(R.id.btn_answer_question);
+        ivReply = (ImageView)findViewById(R.id.iv_reply);
+        etReply = (EditText)findViewById(R.id.et_reply);
         Log.i(TAG,"BoardDetailActivity init------");
         Intent intent = getIntent();
         String content = intent.getStringExtra("content");
         String messageId = intent.getStringExtra("message_id");
 
-        Log.i(TAG,"BoardDetailActivity messageId------" + messageId);
+        Log.i(TAG, "BoardDetailActivity messageId------" + messageId);
 
         mContentTextView.setText(content + "");
         requestData(messageId);
-        btnAnswer.setOnClickListener(new View.OnClickListener() {
+        ivReply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(BoardDetailActivity.this,AnswerQuestionActivity.class);
-                startActivity(intent);
+                String replayContent = etReply.getText().toString();
+                Intent intent = getIntent();
+                String messageId = intent.getStringExtra("messageId");
+                Intent intentA = new Intent(BoardDetailActivity.this, BoardDetailActivity.class);
+                startActivity(intentA);
             }
         });
 
@@ -74,8 +83,17 @@ public class BoardDetailActivity extends Activity {
                 commentAdapter = new CommentAdapter(getApplicationContext());
                 commentAdapter.setCommentEntitys(comments);
                 mAnswerListView.setAdapter(commentAdapter);
-        }
+            }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 

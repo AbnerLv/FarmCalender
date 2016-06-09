@@ -51,7 +51,16 @@
 
         <activity
             android:name=".ui.activity.BoardDetailActivity"
-            android:label="所有评论" />
+            android:theme="@style/ActionBarTheme"
+            android:label="所有回答"/>
+        <activity
+            android:name=".ui.activity.PublishingQuestionActivity"
+            android:theme="@style/ActionBarTheme"
+            android:label="我来回答"/>
+
+        <activity
+            android:name=".ui.activity.PublishedMessageActivity"
+            android:label="已发表的留言" />
     </application>
 
 </manifest>

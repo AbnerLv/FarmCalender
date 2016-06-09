@@ -22,21 +22,12 @@
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/info"/>
+                android:src="@mipmap/head_portrait"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-
-                <TextView
-                    android:id="@+id/tv_perinfo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:text="个人信息"
-                    android:textSize="20sp"/>
 
                 <TextView
                     android:id="@+id/tv_perdetail"
@@ -45,6 +36,15 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginLeft="25dp"
                     android:hint="Helo"
+                    android:textSize="20sp"/>
+
+                <TextView
+                    android:id="@+id/tv_perinfo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="10dp"
+                    android:text="个人简介"
                     android:textSize="20sp"/>
             </LinearLayout>
         </LinearLayout>
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/scheduled_tasks"/>
+                android:src="@mipmap/release_history"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
-                android:src="@mipmap/change_pass"/>
+                android:src="@mipmap/change_password"/>
 
             <TextView
                 android:id="@+id/tv_change_pass"

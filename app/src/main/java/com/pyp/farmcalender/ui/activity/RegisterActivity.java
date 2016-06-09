@@ -27,7 +27,7 @@ public class RegisterActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.register_layout);
 
         init();
     }
@@ -39,22 +39,23 @@ public class RegisterActivity extends Activity {
 
         btnRegister = (Button) findViewById(R.id.btn_register);
         btnBack = (Button)findViewById(R.id.btn_register_back);
-        String username = etUsername.getText().toString().trim();
-        String password = etPassword.getText().toString().trim();
-        String email = etEmail.getText().toString().trim();
 
-        final JSONObject json = new JSONObject();
-        try {
-            json.put("username", username);
-            json.put("password", password);
-            json.put("eamil", email);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String username = etUsername.getText().toString().trim();
+                String password = etPassword.getText().toString().trim();
+                String email = etEmail.getText().toString().trim();
+
+                final JSONObject json = new JSONObject();
+                try {
+                    json.put("username", username);
+                    json.put("password", password);
+                    json.put("email", email);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
                 UserService.getInstance().register(getApplicationContext(), json, new RegisterHandler() {
                     @Override
                     public void register(int success) {

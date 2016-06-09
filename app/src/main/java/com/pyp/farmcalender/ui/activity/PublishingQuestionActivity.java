@@ -9,14 +9,15 @@ import com.pyp.farmcalender.R;
 
 
 
-public class AnswerQuestionActivity extends Activity {
+public class PublishingQuestionActivity extends Activity {
 
-    private static final String TAG = "AnswerQuestionActivity";
+    private static final String TAG = "PublishingQuestionActivity";
     private EditText mContentEditView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         setContentView(R.layout.comment_answer);
         init();
 

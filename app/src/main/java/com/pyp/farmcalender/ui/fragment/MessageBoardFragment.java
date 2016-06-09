@@ -1,6 +1,7 @@
 package com.pyp.farmcalender.ui.fragment;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,17 +17,19 @@ import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.entity.MessageBoardEntity;
 import com.pyp.farmcalender.service.MessageBoardService;
 import com.pyp.farmcalender.service.handler.GetMessageInfosHandler;
+import com.pyp.farmcalender.ui.activity.PublishingQuestionActivity;
 import com.pyp.farmcalender.ui.adapter.MessageBoardAdapter;
 
 import java.util.List;
 
 
-public class MessageBoardFragment extends Fragment implements OnClickListener {
+public class MessageBoardFragment extends Fragment {
 
 
     private static final String TAG = "MessageBoardFragment";
     private ListView mBoardListView;
     private MessageBoardAdapter messageBoardAdapter;
+    private Button btnRelease;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -44,6 +47,14 @@ public class MessageBoardFragment extends Fragment implements OnClickListener {
     // 初始化控件
     private void init() {
         mBoardListView = (ListView)getActivity().findViewById(R.id.lv_message_board);
+        btnRelease = (Button)getActivity().findViewById(R.id.btn_release);
+        btnRelease.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PublishingQuestionActivity.class);
+                startActivity(intent);
+            }
+        });
         requestData();
 
     }
@@ -63,10 +74,7 @@ public class MessageBoardFragment extends Fragment implements OnClickListener {
         });
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 
     @Override
     public void onStop() {
