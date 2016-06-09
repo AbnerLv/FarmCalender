@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.pyp.farmcalender.MainActivity;
 import com.pyp.farmcalender.R;
+import com.pyp.farmcalender.cache.UserInfoCache;
 import com.pyp.farmcalender.entity.UserEntity;
 import com.pyp.farmcalender.service.UserService;
 import com.pyp.farmcalender.service.handler.LoginHandler;
@@ -40,13 +41,11 @@ public class LoginActivity extends Activity {
 
     }
 
-    public void init(){
-        etUsername = (EditText)findViewById(R.id.et_login_username);
-        etPassword = (EditText)findViewById(R.id.et_login_password);
-        btnSignIn = (Button)findViewById(R.id.btn_sign_in);
-        tvRegister = (TextView)findViewById(R.id.tv_register);
-
-
+    public void init() {
+        etUsername = (EditText) findViewById(R.id.et_login_username);
+        etPassword = (EditText) findViewById(R.id.et_login_password);
+        btnSignIn = (Button) findViewById(R.id.btn_sign_in);
+        tvRegister = (TextView) findViewById(R.id.tv_register);
 
 
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +53,7 @@ public class LoginActivity extends Activity {
             public void onClick(View v) {
                 String username = etUsername.getText().toString().trim();
                 String password = etPassword.getText().toString().trim();
-                Log.i(TAG,"username = " + username);
+                Log.i(TAG, "username = " + username);
                 final JSONObject json = new JSONObject();
                 try {
                     json.put("username", username);
@@ -62,11 +61,12 @@ public class LoginActivity extends Activity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.i(TAG,json.toString());
+                Log.i(TAG, json.toString());
                 UserService.getInstance().checkLogin(json, getApplicationContext(), new LoginHandler() {
                     @Override
                     public void onSuccess(UserEntity userEntity) {
-                            progressDialog();
+                        UserInfoCache.cacheUserInfo(getApplicationContext(), userEntity);
+                        progressDialog();
                     }
                 });
             }

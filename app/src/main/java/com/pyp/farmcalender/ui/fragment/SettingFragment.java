@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.pyp.farmcalender.R;
+import com.pyp.farmcalender.ui.activity.LoginActivity;
 import com.pyp.farmcalender.ui.activity.PublishedMessageActivity;
 import com.pyp.farmcalender.ui.activity.StartActivity;
 
@@ -21,6 +22,11 @@ public class SettingFragment extends Fragment implements OnClickListener {
 
 
     private LinearLayout publishedMessageLayout;
+    private LinearLayout personInfoLayout;
+    private LinearLayout exitLayout;
+    private TextView tvPersonName;
+    private TextView tvPersonProfile;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
@@ -37,8 +43,20 @@ public class SettingFragment extends Fragment implements OnClickListener {
     }
 
     private void init() {
+        SharedPreferences sp = getActivity().getSharedPreferences("UserInfo", 0);
+        tvPersonName = (TextView)getActivity().findViewById(R.id.tv_person_name);
+        tvPersonProfile = (TextView)getActivity().findViewById(R.id.tv_person_profile);
+        tvPersonName.setText(sp.getString("username",null)+"");
+        tvPersonProfile.setText(sp.getString("profile",null)+"");
+
         publishedMessageLayout = (LinearLayout)getActivity().findViewById(R.id.layout_published_message);
         publishedMessageLayout.setOnClickListener(this);
+
+        personInfoLayout = (LinearLayout)getActivity().findViewById(R.id.layout_person_info);
+        personInfoLayout.setOnClickListener(this);
+
+        exitLayout = (LinearLayout)getActivity().findViewById(R.id.layout_exit);
+        exitLayout.setOnClickListener(this);
     }
 
     @Override
@@ -48,12 +66,16 @@ public class SettingFragment extends Fragment implements OnClickListener {
                 Intent intent = new Intent(getActivity(),PublishedMessageActivity.class);
                 startActivity(intent);
                 break;
-            case R.id.tv_exit :
-                SharedPreferences sp = getActivity().getSharedPreferences(
-                        "PersonInfo", getActivity().MODE_PRIVATE);
+            case R.id.layout_person_info :
+
+                break;
+
+            case R.id.layout_exit :
+                SharedPreferences sp= getActivity().getSharedPreferences(
+                        "UserInfo", getActivity().MODE_PRIVATE);
                 sp.edit().clear().commit();
-                Intent intent1 = new Intent(getActivity(), StartActivity.class);
-                startActivity(intent1);
+                Intent exitIntent = new Intent(getActivity(),LoginActivity.class);
+                startActivity(exitIntent);
                 break;
             default:
                 break;

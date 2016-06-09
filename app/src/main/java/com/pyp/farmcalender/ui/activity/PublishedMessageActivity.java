@@ -3,6 +3,7 @@ package com.pyp.farmcalender.ui.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ListView;
 import com.pyp.farmcalender.R;
@@ -35,8 +36,8 @@ public class PublishedMessageActivity extends Activity {
     }
 
     private void requestData(){
-        Intent intent = getIntent();
-        String userId = intent.getStringExtra("userId");
+        SharedPreferences sp = getSharedPreferences("UserInfo", 0);
+        Integer userId = sp.getInt("userId",0);
         MessageBoardService.getInstance().getPublishedMessages(getApplicationContext(), userId, new GetPublishedMessagesHandler() {
             @Override
             public void onSuccess(List<MessageBoardEntity> entitys) {
