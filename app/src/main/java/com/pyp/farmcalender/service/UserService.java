@@ -15,7 +15,10 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.pyp.farmcalender.constant.Constant;
 import com.pyp.farmcalender.entity.UserEntity;
+import com.pyp.farmcalender.service.handler.ForgetPasswordHandler;
 import com.pyp.farmcalender.service.handler.LoginHandler;
+import com.pyp.farmcalender.service.handler.ModifyPasswordHandler;
+import com.pyp.farmcalender.service.handler.ModifyPerInfoHandler;
 import com.pyp.farmcalender.service.handler.RegisterHandler;
 import com.pyp.farmcalender.service.response.ErrorResponse;
 
@@ -29,6 +32,7 @@ public class UserService {
 
     private static UserService instance;
     private final static String TAG = "UserService---";
+    private RequestQueue mRequestQueue;
 
     public static UserService  getInstance(){
         if(instance == null){
@@ -98,6 +102,97 @@ public class UserService {
 
     }
 
+    /**
+     * 忘记密码
+     * @param context
+     * @param json
+     * @param forgetPasswordHandler
+     */
+    public void forgetPassword(final Context context, JSONObject json, final ForgetPasswordHandler forgetPasswordHandler){
+        String FORGET_PASSWORD_URL = Constant.URL + "forgetPassword.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, FORGET_PASSWORD_URL, json,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try{
+                            String password = response.get("password").toString();
+                            forgetPasswordHandler.success(password);
+                        } catch (JSONException e) {
+                            Toast.makeText(context,e.getMessage()+"",Toast.LENGTH_LONG).show();
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e("TAG", error.getMessage(), error);
+                Toast.makeText( context, error.getMessage()+"",Toast.LENGTH_LONG).show();
+            }
+        });
+        mRequestQueue.add(jsonObjectRequest);
+    }
+
+    /**
+     * 修改密码
+     *
+     */
+    public void modifyPassword(final Context context, JSONObject json, final ModifyPasswordHandler modifyPasswordHandler) {
+        String MODIFY_PASSWORD_URL = Constant.URL + "modifyPassword.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                MODIFY_PASSWORD_URL, json, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    int code = response.getInt("code");
+                    modifyPasswordHandler.addSuccess(code);
+                } catch (Exception e) {
+                    Toast.makeText(context,e.getMessage()+"",Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new ErrorResponse(context));
+
+        mRequestQueue.add(jsonObjectRequest);
+
+    }
+
+    /**
+     * 修改个人信息
+     *
+     */
+    public void modifyPerInfo(final Context context, JSONObject json, final ModifyPerInfoHandler modifyPerInfoHandler) {
+        String MODIFY_PASSWORD_URL = Constant.URL + "modifyPerInfo.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                MODIFY_PASSWORD_URL, json, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                try {
+                    int code = response.getInt("code");
+                    modifyPerInfoHandler.addSuccess(code);
+                } catch (Exception e) {
+                    Toast.makeText(context,e.getMessage()+"",Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+                }
+            }
+        }, new ErrorResponse(context));
+
+        mRequestQueue.add(jsonObjectRequest);
+
+    }
+
+    /**
+     * 取消所有或部分未完成的网络请求
+     */
+    public void cancelPendingRequests() {
+        if (mRequestQueue != null) {
+            mRequestQueue.cancelAll(new Object());
+        }
+    }
 
 
 

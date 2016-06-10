@@ -13,7 +13,9 @@ import android.widget.TextView;
 
 import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.ui.activity.LoginActivity;
+import com.pyp.farmcalender.ui.activity.ModifyPasswordActivity;
 import com.pyp.farmcalender.ui.activity.PublishedMessageActivity;
+import com.pyp.farmcalender.ui.activity.ShowPerInfoActivity;
 import com.pyp.farmcalender.ui.activity.StartActivity;
 
 
@@ -67,7 +69,13 @@ public class SettingFragment extends Fragment implements OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.layout_person_info :
+                Intent personIntent = new Intent(getActivity(),ShowPerInfoActivity.class);
+                startActivity(personIntent);
+                break;
 
+            case R.id.layout_modify_password :
+                Intent modifyIntent = new Intent(getActivity(),ModifyPasswordActivity.class);
+                startActivity(modifyIntent);
                 break;
 
             case R.id.layout_exit :

@@ -31,6 +31,7 @@ public class LoginActivity extends Activity {
     private EditText etUsername;
     private EditText etPassword;
     private TextView tvRegister;
+    private TextView tvForgetPassword;
     private Button btnSignIn;
 
     @Override
@@ -46,8 +47,15 @@ public class LoginActivity extends Activity {
         etPassword = (EditText) findViewById(R.id.et_login_password);
         btnSignIn = (Button) findViewById(R.id.btn_sign_in);
         tvRegister = (TextView) findViewById(R.id.tv_register);
+        tvForgetPassword = (TextView)findViewById(R.id.tv_forget_password);
 
-
+        tvForgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LoginActivity.this,ForgetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
