@@ -13,8 +13,7 @@ public class Constant {
     // 服务端IP地址
    // public final static String URL = "http://192.168.43.188:8080/FramCalenderServer/";
 
-    // 缓存用户信息 SharedPreferences
-    public final static String EMPINFO = "UserInfo";
+
 
 
 

@@ -60,11 +60,11 @@ public class RegisterActivity extends Activity {
                     @Override
                     public void register(int success) {
                         if (success == 1) {
-                            Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),"注册成功",Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(getApplicationContext(),"注册失败",Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),"注册失败",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

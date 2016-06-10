@@ -34,6 +34,8 @@ import java.util.List;
 public class BoardDetailActivity extends Activity {
 
     private static final String TAG = "BoardDetailActivity";
+    public static final int RESULT_CODE = 3;
+    public static final int REQUEST_CODE = 3;
     private CommentAdapter commentAdapter;
 
     private ListView mAnswerListView;
@@ -82,7 +84,7 @@ public class BoardDetailActivity extends Activity {
                             commentAdapter.setCommentEntitys(comments);
                             mAnswerListView.setAdapter(commentAdapter);
                         }else{
-                            Toast.makeText(getApplicationContext(),"网络出现问题，添加失败",Toast.LENGTH_LONG);
+                            Toast.makeText(getApplicationContext(),"网络出现问题，添加失败",Toast.LENGTH_LONG).show();
                         }
                     }
                 });

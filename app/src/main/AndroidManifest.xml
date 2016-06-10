@@ -54,9 +54,9 @@
             android:theme="@style/ActionBarTheme"
             android:label="所有回答"/>
         <activity
-            android:name=".ui.activity.PublishingQuestionActivity"
-            android:theme="@style/ActionBarTheme"
-            android:label="我来回答"/>
+            android:name=".ui.activity.AddMessagesActivity"
+            android:theme="@style/ActionBarMessageTheme"
+            android:label="我来发表"/>
 
         <activity
             android:name=".ui.activity.PublishedMessageActivity"

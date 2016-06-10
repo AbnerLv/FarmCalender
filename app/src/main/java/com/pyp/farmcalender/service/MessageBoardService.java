@@ -17,6 +17,7 @@ import com.pyp.farmcalender.constant.Constant;
 import com.pyp.farmcalender.entity.MessageBoardEntity;
 import com.pyp.farmcalender.entity.UserEntity;
 import com.pyp.farmcalender.service.handler.AddCommentHandler;
+import com.pyp.farmcalender.service.handler.AddMessagesHandler;
 import com.pyp.farmcalender.service.handler.GetCommentsByIdHandler;
 import com.pyp.farmcalender.service.handler.GetMessageInfosHandler;
 import com.pyp.farmcalender.service.handler.GetPublishedMessagesHandler;
@@ -130,7 +131,7 @@ public class MessageBoardService {
     }
 
     /**
-     * 发布信息
+     * 发布评论
      *
      * @param context
      */
@@ -156,6 +157,35 @@ public class MessageBoardService {
 
         mRequestQueue.add(jsonObjectRequest);
     }
+
+    /**
+     * 发布信息
+     *
+     * @param context
+     */
+    public void addMessages(final Context context, JSONObject jSONMessages, final AddMessagesHandler addMessagesHandler) {
+
+        String ADD_MESSAGES_URL = Constant.URL + "addMessages.json";
+        mRequestQueue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, ADD_MESSAGES_URL, jSONMessages,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        Log.d(TAG, response.toString());
+                        try {
+                            Integer code = response.getInt("code");
+                            addMessagesHandler.addSuccess(code);
+                        } catch (JSONException e) {
+                            Toast.makeText(context, e.getMessage()+"",Toast.LENGTH_LONG).show();
+                        }
+
+                    }
+                }, new ErrorResponse(context));
+
+        mRequestQueue.add(jsonObjectRequest);
+    }
+
 
 
     /**

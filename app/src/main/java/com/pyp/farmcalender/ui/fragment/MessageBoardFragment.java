@@ -10,6 +10,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -17,7 +18,8 @@ import com.pyp.farmcalender.R;
 import com.pyp.farmcalender.entity.MessageBoardEntity;
 import com.pyp.farmcalender.service.MessageBoardService;
 import com.pyp.farmcalender.service.handler.GetMessageInfosHandler;
-import com.pyp.farmcalender.ui.activity.PublishingQuestionActivity;
+import com.pyp.farmcalender.ui.activity.AddMessagesActivity;
+import com.pyp.farmcalender.ui.activity.BoardDetailActivity;
 import com.pyp.farmcalender.ui.adapter.MessageBoardAdapter;
 
 import java.util.List;
@@ -27,6 +29,7 @@ public class MessageBoardFragment extends Fragment {
 
 
     private static final String TAG = "MessageBoardFragment";
+    public static final int REQUEST_CODE = 1;
     private ListView mBoardListView;
     private MessageBoardAdapter messageBoardAdapter;
     private Button btnRelease;
@@ -44,6 +47,7 @@ public class MessageBoardFragment extends Fragment {
         init();
     }
 
+
     // 初始化控件
     private void init() {
         mBoardListView = (ListView)getActivity().findViewById(R.id.lv_message_board);
@@ -51,8 +55,8 @@ public class MessageBoardFragment extends Fragment {
         btnRelease.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PublishingQuestionActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent(getActivity(), AddMessagesActivity.class);
+                startActivityForResult(intent, REQUEST_CODE);
             }
         });
         requestData();
@@ -74,7 +78,15 @@ public class MessageBoardFragment extends Fragment {
         });
     }
 
-
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode){
+            case AddMessagesActivity.RESULT_CODE:  requestData();
+                break;
+            default:break;
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 
     @Override
     public void onStop() {

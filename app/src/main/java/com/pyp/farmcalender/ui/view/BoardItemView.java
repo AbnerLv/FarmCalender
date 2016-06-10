@@ -26,13 +26,12 @@ public class BoardItemView {
         timeTextView.setText(mBoardEntity.getTime());
         contentTextView.setText(mBoardEntity.getContent());
         numTextView.setText("回答(" + mBoardEntity.getCommentNum() + ")");
-
-        numTextView.setOnClickListener(new View.OnClickListener() {
+        boardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, BoardDetailActivity.class);
                 intent.putExtra("message_id",mBoardEntity.getId());
-                intent.putExtra("content",mBoardEntity.getContent());
+                intent.putExtra("content", mBoardEntity.getContent());
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 context.startActivity(intent);
             }

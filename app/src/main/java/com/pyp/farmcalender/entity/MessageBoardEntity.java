@@ -5,7 +5,7 @@ package com.pyp.farmcalender.entity;
  */
 public class MessageBoardEntity {
     private String id;
-    private String userid;
+    private String userId;
     private String username;
     private String content;
     private String time;
@@ -19,12 +19,12 @@ public class MessageBoardEntity {
         this.id = id;
     }
 
-    public String getUserid() {
-        return userid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getContent() {
