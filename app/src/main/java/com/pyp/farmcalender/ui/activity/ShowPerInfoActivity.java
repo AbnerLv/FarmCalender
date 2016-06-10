@@ -1,6 +1,7 @@
 package com.pyp.farmcalender.ui.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
@@ -51,7 +52,7 @@ public class ShowPerInfoActivity extends Activity{
         SharedPreferences sp = getSharedPreferences("UserInfo", 0);
         tvPerInfoNickname.setText(sp.getString("username", null));
         tvPerInfoSex.setText(sp.getInt("sex", 0) == 1 ?"男":"女");
-        tvPerInfoAge.setText(sp.getInt("age", 0));
+        tvPerInfoAge.setText(sp.getInt("age", 0)+"");
         tvPerInfoPhoneNum.setText(sp.getString("phone", null));
         tvPerInfoEmail.setText(sp.getString("email", null));
         tvPerInfoCity.setText(sp.getString("city", null));
@@ -73,7 +74,8 @@ public class ShowPerInfoActivity extends Activity{
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
         case R.id.per_info_edit:
-
+            Intent intent = new Intent(ShowPerInfoActivity.this,ModifyPerInfoActivity.class);
+            startActivity(intent);
             break;
         case R.id.home:
             finish();

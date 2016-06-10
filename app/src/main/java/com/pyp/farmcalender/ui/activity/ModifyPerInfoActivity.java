@@ -64,14 +64,29 @@ public class ModifyPerInfoActivity extends Activity implements
 
         etPerInfoProfile = (EditText) findViewById(R.id.et_modify_profile);
 
-        setPerInfo();
+
+        SharedPreferences sp = getSharedPreferences("UserInfo", 0);
+        final Integer userId = sp.getInt("userId",0);
+        etPerInfoNickname.setText(sp.getString("username", null));
+        if ("1".equals(sp.getInt("sex", 0) + "")) {
+            radioPerInfoMale.setChecked(true);
+        } else if ("0".equals(sp.getInt("sex", 0) + "")) {
+            radioPerInfoFemale.setChecked(true);
+        }
+        etPerInfoAge.setText(sp.getInt("age", 0)+"");
+        etPerInfoPhoneNo.setText(sp.getString("phone", null));
+        etPerInfoEmail.setText(sp.getString("email", null));
+        etPerInfoCity.setText(sp.getString("city", null));
+        etPerInfoAddress.setText(sp.getString("address", null));
+        etPerInfoProfile.setText(sp.getString("profile", null));
+
 
         radioPerInfoSex.setOnCheckedChangeListener(this);
 
         btnPerInfoSubmit.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                UserService.getInstance().modifyPerInfo(getApplicationContext(), getPersionJSON(), new ModifyPerInfoHandler() {
+                UserService.getInstance().modifyPerInfo(getApplicationContext(), getPersionJSON(userId), new ModifyPerInfoHandler() {
                     @Override
                     public void addSuccess(int code) {
                         if (code > 0) {
@@ -87,27 +102,12 @@ public class ModifyPerInfoActivity extends Activity implements
         });
     }
 
-    private void setPerInfo() {
-        SharedPreferences sp = getSharedPreferences("UserInfo", 0);
-        etPerInfoNickname.setText(sp.getString("username", null));
-        if ("1".equals(sp.getInt("sex", 0) + "")) {
-            radioPerInfoMale.setChecked(true);
-        } else if ("0".equals(sp.getInt("sex", 0) + "")) {
-            radioPerInfoFemale.setChecked(true);
-        }
-        etPerInfoAge.setText(sp.getInt("age", 0));
-        etPerInfoPhoneNo.setText(sp.getString("phone", null));
-        etPerInfoEmail.setText(sp.getString("email", null));
-        etPerInfoCity.setText(sp.getString("city", null));
-        etPerInfoAddress.setText(sp.getString("address", null));
-        etPerInfoProfile.setText(sp.getString("profile", null));
-    }
 
 
-
-    private JSONObject getPersionJSON() {
+    private JSONObject getPersionJSON(Integer userid) {
         JSONObject json = new JSONObject();
         try {
+            json.put("userId",userid);
             json.put("username", etPerInfoNickname.getText().toString());
             json.put("sex", sex);
             json.put("age", etPerInfoAge.getText().toString().trim());

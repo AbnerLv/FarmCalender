@@ -62,7 +62,7 @@ public class BoardDetailActivity extends Activity {
         etReply = (EditText) findViewById(R.id.et_reply);
         Log.i(TAG, "BoardDetailActivity init------");
         Intent intent = getIntent();
-        String content = intent.getStringExtra("content");
+        final String content = intent.getStringExtra("content");
         messageId = intent.getStringExtra("message_id");
 
         Log.i(TAG, "BoardDetailActivity messageId------" + messageId);
@@ -74,20 +74,24 @@ public class BoardDetailActivity extends Activity {
             @Override
             public void onClick(View v) {
 
-                MessageBoardService.getInstance().addComment(getApplicationContext(), getCommentJSON(messageId), new AddCommentHandler() {
-                    @Override
-                    public void addSuccess(int code) {
-                        etReply.setText("");
-                        if(code > 0){
-                            commentAdapter = new CommentAdapter(getApplicationContext());
-                            comments.add(commentEntity);
-                            commentAdapter.setCommentEntitys(comments);
-                            mAnswerListView.setAdapter(commentAdapter);
-                        }else{
-                            Toast.makeText(getApplicationContext(),"网络出现问题，添加失败",Toast.LENGTH_LONG).show();
+                if(content == null || "".equals(content)){
+                    Toast.makeText(getApplicationContext(),"内容不能为空...",Toast.LENGTH_LONG).show();
+                }else {
+                    MessageBoardService.getInstance().addComment(getApplicationContext(), getCommentJSON(messageId), new AddCommentHandler() {
+                        @Override
+                        public void addSuccess(int code) {
+                            etReply.setText("");
+                            if (code > 0) {
+                                commentAdapter = new CommentAdapter(getApplicationContext());
+                                comments.add(commentEntity);
+                                commentAdapter.setCommentEntitys(comments);
+                                mAnswerListView.setAdapter(commentAdapter);
+                            } else {
+                                Toast.makeText(getApplicationContext(), "网络出现问题，添加失败", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
-                });
+                    });
+                }
 
             }
         });

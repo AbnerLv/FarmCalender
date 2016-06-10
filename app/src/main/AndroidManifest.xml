@@ -60,7 +60,27 @@
 
         <activity
             android:name=".ui.activity.PublishedMessageActivity"
+            android:theme="@style/ActionBarTheme"
             android:label="已发表的留言" />
+        <activity
+            android:name=".ui.activity.ShowPerInfoActivity"
+            android:theme="@style/ActionBarTheme"
+            android:label="个人信息" />
+        <activity
+            android:name=".ui.activity.ModifyPerInfoActivity"
+            android:theme="@style/ActionBarTheme"
+            android:label="修改个人信息" />
+
+        <activity
+            android:name=".ui.activity.ForgetPasswordActivity"
+            android:theme="@style/ActionBarTheme"
+            android:label="忘记密码" />
+        <activity
+            android:name=".ui.activity.ModifyPasswordActivity"
+            android:theme="@style/ActionBarTheme"
+            android:label="修改密码" />
+
+
     </application>
 
 </manifest>

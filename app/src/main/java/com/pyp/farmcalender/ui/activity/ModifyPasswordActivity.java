@@ -61,34 +61,34 @@ public class ModifyPasswordActivity extends Activity implements OnClickListener 
 
         switch (v.getId()) {
         case R.id.btn_modify_password_submit:
-            final String username = etUsername.getText().toString();
-            final String oldPassword = etOldPassword.getText().toString();
-            final String newPassword = etNewPassword.getText().toString();
+            String username = etUsername.getText().toString();
+            String oldPassword = etOldPassword.getText().toString();
+            String newPassword = etNewPassword.getText().toString();
             if (oldPassword.equals(newPassword)){
                 Toast.makeText(ModifyPasswordActivity.this, "新密码与旧密码相同！", Toast.LENGTH_SHORT).show();
                 etOldPassword.getText().clear();
                 etNewPassword.getText().clear();
-            }
-            try {
-                JSONObject json = new JSONObject();
-                json.put("userName", username);
-                json.put("oldPassword", etOldPassword.getText().toString()
-                        .trim());
-                json.put("newPassword", etNewPassword);
-                UserService.getInstance().modifyPassword(
-                        getApplicationContext(), json, new ModifyPasswordHandler() {
-                            @Override
-                            public void addSuccess(int code) {
-                                if(code > 0){
-                                    dialog();
-                                }else{
-                                    Toast.makeText(getApplicationContext(),"服务器端出问题，请等会再试...",Toast.LENGTH_LONG).show();
+            }else {
+                try {
+                    JSONObject json = new JSONObject();
+                    json.put("userName", username);
+                    json.put("oldPassword", oldPassword);
+                    json.put("newPassword", newPassword);
+                    UserService.getInstance().modifyPassword(
+                            getApplicationContext(), json, new ModifyPasswordHandler() {
+                                @Override
+                                public void addSuccess(int code) {
+                                    if (code > 0) {
+                                        dialog();
+                                    } else {
+                                        Toast.makeText(getApplicationContext(), "服务器端出问题，请等会再试...", Toast.LENGTH_LONG).show();
+                                    }
                                 }
-                            }
-                        });
+                            });
 
-            } catch (JSONException e) {
-                e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             break;
 
@@ -112,7 +112,7 @@ public class ModifyPasswordActivity extends Activity implements OnClickListener 
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
         editor.commit();
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("密码已修改成功，请重新登录！");
         builder.setTitle("提示");
         builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {

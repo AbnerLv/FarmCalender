@@ -26,6 +26,7 @@ public class SettingFragment extends Fragment implements OnClickListener {
     private LinearLayout publishedMessageLayout;
     private LinearLayout personInfoLayout;
     private LinearLayout exitLayout;
+    private LinearLayout modifyPasswordLayout;
     private TextView tvPersonName;
     private TextView tvPersonProfile;
 
@@ -56,6 +57,9 @@ public class SettingFragment extends Fragment implements OnClickListener {
 
         personInfoLayout = (LinearLayout)getActivity().findViewById(R.id.layout_person_info);
         personInfoLayout.setOnClickListener(this);
+
+        modifyPasswordLayout = (LinearLayout)getActivity().findViewById(R.id.layout_modify_password);
+        modifyPasswordLayout.setOnClickListener(this);
 
         exitLayout = (LinearLayout)getActivity().findViewById(R.id.layout_exit);
         exitLayout.setOnClickListener(this);

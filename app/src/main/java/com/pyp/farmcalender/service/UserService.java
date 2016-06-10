@@ -117,11 +117,10 @@ public class UserService {
                     @Override
                     public void onResponse(JSONObject response) {
                         try{
-                            String password = response.get("password").toString();
+                            String password = response.get("message").toString();
                             forgetPasswordHandler.success(password);
                         } catch (JSONException e) {
                             Toast.makeText(context,e.getMessage()+"",Toast.LENGTH_LONG).show();
-                            e.printStackTrace();
                         }
                     }
                 }, new Response.ErrorListener() {
